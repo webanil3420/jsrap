@@ -2,7 +2,10 @@
 import { useState, useEffect } from 'react';
 import Header from '../layouts/Header'
 import Card from '../components/ui/Card';
-import { Wrench, Shield, Zap, ChevronRight } from 'lucide-react';
+import { Wrench, Shield, Zap, ChevronRight ,Star, ShoppingCart } from 'lucide-react';
+import React from 'react';
+import productsData from './ProductSection.json';
+import Footer from '../layouts/Footer';
 
 export default function Home() {
 
@@ -98,43 +101,143 @@ export default function Home() {
       `}</style>
             </section>
             <div>
-                <div className="p-10 bg-white">
+                <div className="p-6 md:p-10 bg-white">
                     {/* 1. Header Section */}
-
-                            <div className="flex justify-between items-center mb-8">
-                                <h2 className="text-3xl font-bold text-slate-900">Shop By Category</h2>
-                                <a href="#" className="text-red-600 font-bold flex items-center">
-                                    View All <ChevronRight size={20} />
-                                </a>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                {categories.map((cat, i) => (
-                                    <Card
-                                        key={i}
-                                        size="full"
-                                        // '!bg-...' use karne se purani white class override ho jayegi
-                                        className={`${cat.color} !border-none h-[200px] shadow-lg`}
-                                    >
-                                        <Card.Body className="flex flex-col justify-between !p-6">
-                                            {/* Icon Top Par */}
-                                            <div className="text-white opacity-90">
-                                                {cat.icon}
-                                            </div>
-
-                                            {/* Text Bottom Par */}
-                                            <div className="text-white">
-                                                <Card.Title className="font-bold text-2xl">{cat.title}</Card.Title>
-                                                <Card.Text className="text-sm opacity-80">{cat.count}</Card.Text>
-                                           <Card.Text className="text-sm opacity-80">{cat.count}</Card.Text>
-                                            </div>
-                                        </Card.Body>
-                                    </Card>
-                                ))}
-                            </div>
-                        </div>
+                    <div className="flex justify-between items-center mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                            Shop By Category
+                        </h2>
+                        <a href="#" className="text-red-600 font-bold flex items-center hover:underline">
+                            View All <ChevronRight size={20} className="ml-1" />
+                        </a>
                     </div>
-  </div>
-          
+
+                    {/* 2. Responsive Grid/Slider Section */}
+                    {/* 
+        Mobile: flex + overflow-x-auto (Sliding)
+        Desktop: md:grid + md:grid-cols-4 (Normal Grid)
+    */}
+                    <div className="flex overflow-x-auto md:grid md:grid-cols-4 gap-4 pb-6 snap-x snap-mandatory scrollbar-hide">
+                        {categories.map((cat, i) => (
+                            <Card
+                                key={i}
+                                size="full"
+                                // Mobile par 'min-w-[280px]' slider ke liye jaruri hai
+                                // 'snap-center' se card slide hone par beech me rukega
+                                className={`${cat.color} !border-none h-[210px] shadow-lg flex-shrink-0 min-w-[280px] md:min-w-0 snap-center !rounded-2xl`}
+                            >
+                                <Card.Body className="flex flex-col justify-between !p-7">
+                                    {/* Icon Top Par */}
+                                    <div className="text-white opacity-95">
+                                        {/* Icon size mobile ke liye thoda chota rakha hai */}
+                                        {React.cloneElement(cat.icon, { size: 40, strokeWidth: 1.5 })}
+                                    </div>
+
+                                    {/* Text Bottom Par */}
+                                    <div className="text-white">
+                                        <Card.Title className="font-bold text-2xl mb-1 tracking-wide">
+                                            {cat.title}
+                                        </Card.Title>
+                                        <Card.Text className="text-sm font-medium opacity-90 !mt-0">
+                                            {cat.count}
+                                        </Card.Text>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* products card */}
+
+
+            <div className="bg-gray-50 p-4 md:p-10">
+      {/* Header Section */}
+      <div className="flex justify-between items-center mb-8 max-w-[1400px] mx-auto">
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Featured Products</h2>
+        <button className="text-red-600 font-bold flex items-center hover:gap-2 transition-all">
+          View All <ChevronRight size={20} />
+        </button>
+      </div>
+
+      {/* Grid for Desktop / Slider for Mobile */}
+      <div className="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-10 max-w-[1400px] mx-auto">
+        {productsData.map((item) => (
+          <div key={item.id} className="group relative flex-shrink-0 w-[85%] md:w-full snap-center">
+            <Card 
+              size="full" 
+              className="!border-none !shadow-sm hover:shadow-xl transition-all duration-300 !rounded-2xl overflow-hidden bg-white"
+            >
+              {/* Media Container */}
+              <div className="relative overflow-hidden aspect-square md:aspect-auto md:h-[320px]">
+                <Card.Media 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full transition-transform duration-700 group-hover:scale-110" 
+                />
+                
+                {/* Sale Badge */}
+                {item.sale && (
+                  <div className="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full z-10 shadow-md">
+                    SALE
+                  </div>
+                )}
+
+                {/* --- DESKTOP ANIMATION: Slide up Button on Hover --- */}
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out hidden md:block z-20">
+                  <button className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-red-700 active:scale-95 transition-all">
+                    <ShoppingCart size={18} /> Add to Cart
+                  </button>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <Card.Body className="!p-5">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  {item.category}
+                </span>
+
+                <Card.Title className="!text-lg !font-bold text-gray-900 mt-1 mb-2">
+                  {item.title}
+                </Card.Title>
+
+                {/* Star Ratings */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      size={14} 
+                      className={`${i < item.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}`} 
+                    />
+                  ))}
+                  <span className="text-gray-400 text-xs ml-1 font-medium">({item.reviews})</span>
+                </div>
+
+                {/* Price Section */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-black text-red-600">₹{item.price}</span>
+                    {item.oldPrice && (
+                      <span className="text-sm text-gray-400 line-through font-medium">₹{item.oldPrice}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* --- MOBILE VIEW: Always visible button --- */}
+                <div className="mt-5 md:hidden">
+                  <button className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-sm shadow-md active:bg-red-700">
+                    <ShoppingCart size={16} /> Add to Cart
+                  </button>
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Footer />
+        </div>
+
     )
 }

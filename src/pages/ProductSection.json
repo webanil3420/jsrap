@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "category": "ENGINE PARTS",
+    "title": "Premium Oil Filter 5",
+    "price": "1250",
+    "rating": 5,
+    "reviews": 124,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg6zh9Y3THkXdJ601uzVwt1ZUqljKhlerLBw&s",
+    "sale": false
+  },
+  {
+    "id": 2,
+    "category": "ENGINE PARTS",
+    "title": "Premium Oil Filter 6",
+    "price": "1500",
+    "rating": 5,
+    "reviews": 124,
+    "image": "https://images.unsplash.com/photo-1756045429114-23829deb5eb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwdGlyZSUyMHdoZWVsfGVufDF8fHx8MTc3MTQ5ODAyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "sale": false
+  },
+  {
+    "id": 3,
+    "category": "ENGINE PARTS",
+    "title": "Premium Oil Filter 7",
+    "price": "1750",
+    "oldPrice": "2800",
+    "rating": 5,
+    "reviews": 124,
+    "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=500",
+    "sale": true
+  },
+  {
+    "id": 4,
+    "category": "ENGINE PARTS",
+    "title": "Premium Oil Filter 8",
+    "price": "2000",
+    "rating": 5,
+    "reviews": 124,
+    "image": "https://images.unsplash.com/photo-1626102033496-c019daaa8559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwZWxlY3RyaWNhbCUyMHBhcnRzfGVufDF8fHx8MTc3MTQ5ODAyNHww&ixlib=rb-4.1.0&q=80&w=10800",
+    "sale": false
+  },
+  {
+    "id": 5,
+    "category": "BRAKE SYSTEM",
+    "title": "Ceramic Brake Pads",
+    "price": "3200",
+    "oldPrice": "4500",
+    "rating": 4,
+    "reviews": 89,
+    "image": "https://images.unsplash.com/photo-1688320944732-8408e3a6218b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwYWlyJTIwZmlsdGVyfGVufDF8fHx8MTc3MTQzMzg5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "sale": true
+  }
+  ,
+    {
+    "id": 6,
+    "category": "BRAKE SYSTEM",
+    "title": "Ceramic Brake Pads",
+    "price": "3200",
+    "oldPrice": "4500",
+    "rating": 4,
+    "reviews": 89,
+    "image": "https://images.unsplash.com/photo-1421344682218-763a7bcdf34b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwb2lsJTIwZmlsdGVyfGVufDF8fHx8MTc3MTQ5ODAyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "sale": true
+  },
+    {
+    "id": 7,
+    "category": "BRAKE SYSTEM",
+    "title": "Ceramic Brake Pads",
+    "price": "3200",
+    "oldPrice": "4500",
+    "rating": 4,
+    "reviews": 89,
+    "image": "https://i.pinimg.com/474x/fc/cc/95/fccc95fbd6298a30030e432bf660d904.jpg",
+    "sale": true
+  },
+    {
+    "id": 8,
+    "category": "BRAKE SYSTEM",
+    "title": "Ceramic Brake Pads",
+    "price": "3200",
+    "oldPrice": "4500",
+    "rating": 4,
+    "reviews": 89,
+    "image": "https://i.pinimg.com/474x/fc/cc/95/fccc95fbd6298a30030e432bf660d904.jpg",
+    "sale": true
+  }
+]
