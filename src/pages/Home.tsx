@@ -126,6 +126,7 @@ export default function Home() {
                                             <div className="text-white">
                                                 <Card.Title className="font-bold text-2xl">{cat.title}</Card.Title>
                                                 <Card.Text className="text-sm opacity-80">{cat.count}</Card.Text>
+                                           <Card.Text className="text-sm opacity-80">{cat.count}</Card.Text>
                                             </div>
                                         </Card.Body>
                                     </Card>
@@ -133,8 +134,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-
-                </div>
+  </div>
           
     )
 }
