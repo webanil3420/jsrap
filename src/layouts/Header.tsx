@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import {
   Phone,
   Mail,
@@ -27,7 +27,6 @@ const handleNavClick = (action: string) => {
   }
 };
 
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [

@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import Header from '../layouts/Header'
 import Card from '../components/ui/Card';
-import { Wrench, Shield, Zap, ChevronRight, User2, User } from 'lucide-react';
-import React from 'react';
+import { Wrench ,ChevronRight} from 'lucide-react';
+
 import Footer from '../layouts/Footer';
 import { Products } from './Products';
 import { useRef } from 'react';
-import { useNavigate } from "react-router-dom";
+
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setCategory } from "../app/features/products/productSlice";
 import { categories } from './data/categories';
@@ -15,7 +15,7 @@ import VisitingCard from "../assets/IMG_20260222_012952.jpg"
 
 
 export default function Home() {
-  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const productRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
