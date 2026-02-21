@@ -1,25 +1,42 @@
 import React, { useState } from 'react';
-import { 
-  Phone, 
-  Mail, 
-  Search, 
-  User, 
-  ShoppingCart, 
+import { useNavigate } from 'react-router-dom';
+import {
+  Phone,
+  Mail,
+  Search,
+  User,
+  ShoppingCart,
   Settings,
   Menu,
   X
 } from 'lucide-react';
+type HeaderProps = {
+  productRef: React.RefObject<HTMLDivElement | null>;
+};
 
-const Header: React.FC = () => {
+
+const Header: React.FC<HeaderProps> = ({ productRef }) => {
+
+const handleNavClick = (action: string) => {
+  if (action === 'products') {
+    productRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  if (action === 'home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
+
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Products', href: '#' },
-    { name: 'Brands', href: '#' },
-    { name: 'Accessories', href: '#' },
-    { name: 'Service', href: '#' },
-    { name: 'About', href: '#' },
+    { name: 'Home', action: 'home' },
+    { name: 'Products', action: 'products' },
+    { name: 'Brands', action: 'brands' },
+    { name: 'Accessories', action: 'product' },
+    { name: 'Service', action: 'product' },
+    { name: 'About', action: 'product' },
   ];
 
   return (
@@ -33,7 +50,7 @@ const Header: React.FC = () => {
         <div className="flex gap-4 md:gap-6 items-center w-full sm:w-auto justify-between sm:justify-end">
           <div className="flex items-center gap-2">
             <Phone size={12} className="md:w-[14px]" />
-            <span>+91-1234-567890</span>
+            <span>+91-7489-893420</span>
           </div>
           <div className="flex items-center gap-2 border-l border-gray-600 pl-4 md:pl-6">
             <Mail size={12} className="md:w-[14px]" />
@@ -47,7 +64,7 @@ const Header: React.FC = () => {
       <div className="bg-white py-4 px-4 md:px-10">
         <div className="flex items-center justify-between gap-4">
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="lg:hidden p-2 text-gray-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -60,7 +77,7 @@ const Header: React.FC = () => {
               JSRAP
             </h1>
             <p className="text-[8px] md:text-[10px] text-gray-500 font-medium uppercase tracking-wider">
-              Premium Auto Parts
+              jay shree ram auto parts
             </p>
           </div>
 
@@ -81,9 +98,9 @@ const Header: React.FC = () => {
           {/* Action Icons */}
           <div className="flex items-center gap-1 md:gap-3">
             <IconButton icon={<User size={20} />} className="hidden sm:flex" />
-            <IconButton 
-              icon={<ShoppingCart size={20} />} 
-              badge={3} 
+            <IconButton
+              icon={<ShoppingCart size={20} />}
+              badge={3}
             />
             <IconButton icon={<Settings size={20} />} className="hidden sm:flex" />
           </div>
@@ -108,7 +125,7 @@ const Header: React.FC = () => {
       <nav className="hidden lg:block bg-white border-t border-gray-100 px-10 py-3">
         <ul className="flex items-center gap-8 text-sm font-semibold text-gray-700">
           {navLinks.map((link) => (
-            <li key={link.name} className="cursor-pointer border-b-2 border-transparent pb-1 transition hover:text-[#ff4d00] hover:border-[#ff4d00]">
+            <li key={link.name} onClick={() => handleNavClick(link.action)} className="cursor-pointer border-b-2 border-transparent pb-1 transition hover:text-[#ff4d00] hover:border-[#ff4d00]">
               {link.name}
             </li>
           ))}
@@ -117,43 +134,46 @@ const Header: React.FC = () => {
 
       {/* 4. MOBILE DRAWER MENU */}
       {/* 4. MOBILE DRAWER MENU - With Blur Effect */}
-<div className={`
+      <div className={`
   fixed inset-0 z-50 transition-all duration-300 lg:hidden
-  ${isMenuOpen 
-    ? "opacity-100 pointer-events-auto backdrop-blur-md bg-black/10" 
-    : "opacity-0 pointer-events-none backdrop-blur-none bg-transparent"}
+  ${isMenuOpen
+          ? "opacity-100 pointer-events-auto backdrop-blur-md bg-black/10"
+          : "opacity-0 pointer-events-none backdrop-blur-none bg-transparent"}
 `} onClick={() => setIsMenuOpen(false)}>
-  
-  <div 
-    className={`
+
+        <div
+          className={`
       fixed top-0 left-0 w-[280px] h-full bg-white shadow-2xl transition-transform duration-300 ease-in-out transform
       ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
     `}
-    onClick={(e) => e.stopPropagation()}
-  >
-    {/* ... rest of the menu content remains same ... */}
-    <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-      <span className="font-bold text-[#ff4d00] text-xl">MENU</span>
-      <button onClick={() => setIsMenuOpen(false)} className="p-1 hover:bg-gray-100 rounded-full">
-        <X size={24} />
-      </button>
-    </div>
-    
-    <ul className="flex flex-col p-4">
-      {navLinks.map((link) => (
-        <li key={link.name}>
-          <a 
-            href={link.href} 
-            className="block py-4 px-4 text-gray-700 font-semibold border-b border-gray-50 hover:bg-orange-50 hover:text-[#ff4d00] rounded-lg transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {link.name}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* ... rest of the menu content remains same ... */}
+          <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+            <span className="font-bold text-[#ff4d00] text-xl">MENU</span>
+            <button onClick={() => setIsMenuOpen(false)} className="p-1 hover:bg-gray-100 rounded-full">
+              <X size={24} />
+            </button>
+          </div>
+
+          <ul className="flex flex-col p-4">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  onClick={() => {
+                    handleNavClick(link.action);
+                    setIsMenuOpen(false);
+                  }}
+                  className="block py-4 px-4 text-gray-700 font-semibold border-b border-gray-50 hover:bg-orange-50 hover:text-[#ff4d00] rounded-lg transition-colors"
+
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </header>
   );
 };

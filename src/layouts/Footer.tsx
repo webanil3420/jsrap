@@ -10,9 +10,10 @@ const Footer: React.FC = () => {
           
           {/* Column 1: MotoHub Info */}
           <div className="space-y-6">
-            <h2 className="text-white text-2xl font-bold">MotoHub</h2>
+            <h2 className="text-white text-2xl font-bold">Jay Shri Ram Auto Parts
+ And Service Center</h2>
             <p className="text-sm leading-relaxed max-w-xs">
-              Your trusted partner for premium two-wheeler auto parts and accessories.
+              Your trusted destination for genuine two-wheeler spare parts and accessories. We provide durable, affordable, and high-performance bike components for a smooth and safe ride.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors text-white">
@@ -32,9 +33,9 @@ const Footer: React.FC = () => {
             <h3 className="text-white text-lg font-semibold">Company</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Our Products</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Brands We Deal In</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Shop Location</a></li>
             </ul>
           </div>
 
@@ -42,17 +43,17 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-white text-lg font-semibold">Support</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Returns</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Returns & Exchange</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Shipping Info</a></li>
             </ul>
           </div>
 
           {/* Column 4: Newsletter */}
           <div className="space-y-4">
-            <h3 className="text-white text-lg font-semibold">Newsletter</h3>
-            <p className="text-sm">Subscribe to get updates on new products and offers</p>
+            <h3 className="text-white text-lg font-semibold">Newsletter / Offers</h3>
+            <p className="text-sm">Subscribe to get updates on new bike parts and special offers.</p>
             <form className="flex mt-4">
               <input 
                 type="email" 
@@ -74,7 +75,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
             <p className="text-xs">
-              © 2026 MotoHub. All rights reserved.
+             © 2026 Jay Shri Ram Auto Parts. All rights reserved.
             </p>
 
             {/* Bottom Links */}
@@ -86,12 +87,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Manage Cookies Button */}
-        <div className="mt-8 flex justify-start md:justify-center lg:justify-start">
-           <button className="bg-white text-gray-500 text-xs px-4 py-2 rounded-md shadow-sm hover:bg-gray-100 transition-colors">
-              Manage cookies or opt out
-           </button>
-        </div>
+     
       </div>
     </footer>
   );

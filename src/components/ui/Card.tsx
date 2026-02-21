@@ -5,7 +5,8 @@ interface CardProps {
   variant?: 'vertical' | 'horizontal';
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   className?: string;
-  style?: React.CSSProperties; // Style support add kiya
+  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
 interface SubComponentProps {
@@ -14,7 +15,7 @@ interface SubComponentProps {
 }
 
 // Main Card: bg-white ko default rakha hai par className se override ho sakta hai
-const Card = ({ children, variant = 'vertical', size = 'md', className = '', style }: CardProps) => {
+const Card = ({ children, variant = 'vertical', size = 'md', className = '', style, onClick }: CardProps) => {
   const sizeClasses: Record<string, string> = {
     sm: "max-w-xs", md: "max-w-md", lg: "max-w-xl", xl: "max-w-3xl", full: "w-full"
   };
@@ -22,7 +23,8 @@ const Card = ({ children, variant = 'vertical', size = 'md', className = '', sty
 
   return (
     // Yahan se 'bg-white' hata kar default class mein dala hai taaki override ho sake
-    <div 
+    <div
+      onClick={onClick}
       style={style}
       className={`border border-transparent rounded-2xl shadow-sm overflow-hidden flex ${sizeClasses[size]} ${layoutClasses} ${className}`}
     >
@@ -45,7 +47,7 @@ const Text = ({ children, className = "" }: SubComponentProps) => (
   <div className={`mt-2 leading-relaxed ${className}`}>{children}</div>
 );
 
-Card.Media = ({ src, alt, className = "" }: {src:string, alt:string, className?:string}) => (
+Card.Media = ({ src, alt, className = "" }: { src: string, alt: string, className?: string }) => (
   <div className={`overflow-hidden flex-shrink-0 ${className}`}>
     <img src={src} alt={alt} className="w-full h-full object-cover" />
   </div>

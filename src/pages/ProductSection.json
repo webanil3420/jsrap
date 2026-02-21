@@ -1,88 +1,190 @@
 [
   {
     "id": 1,
-    "category": "ENGINE PARTS",
-    "title": "Premium Oil Filter 5",
-    "price": "1250",
-    "rating": 5,
-    "reviews": 124,
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg6zh9Y3THkXdJ601uzVwt1ZUqljKhlerLBw&s",
-    "sale": false
+    "title": "Castrol's Active 20W-40 Engine Oil",
+    "category": "Engine Oil",
+    "price": 450,
+    "oldPrice": 550,
+    "sale": true,
+    "rating": 4,
+    "reviews": 12,
+    "image": "https://cdn.moglix.com/p/Xx1drE3eDmi6U-xxlarge.jpg"
   },
   {
     "id": 2,
-    "category": "ENGINE PARTS",
-    "title": "Premium Oil Filter 6",
-    "price": "1500",
+    "title": "Motul Engine Oil",
+    "category": "Engine Oil",
+    "price": 400,
+    "oldPrice": 500,
+    "sale": false,
     "rating": 5,
-    "reviews": 124,
-    "image": "https://images.unsplash.com/photo-1756045429114-23829deb5eb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwdGlyZSUyMHdoZWVsfGVufDF8fHx8MTc3MTQ5ODAyNXww&ixlib=rb-4.1.0&q=80&w=1080",
-    "sale": false
+    "reviews": 8,
+    "image": "https://www.helmetwala.com/cdn/shop/files/81DSmjqkZlL._SL1500.jpg?v=1723457705&width=1200"
   },
   {
     "id": 3,
-    "category": "ENGINE PARTS",
-    "title": "Premium Oil Filter 7",
-    "price": "1750",
-    "oldPrice": "2800",
+    "title": "valvoline Engine Oil",
+    "category": "Engine Oil",
+    "price": 400,
+    "oldPrice": 500,
+    "sale": true,
     "rating": 5,
-    "reviews": 124,
-    "image": "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=500",
-    "sale": true
+    "reviews": 15,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSklbzMkhphnNDXCYcGaSYdfbGY5bCe8HkzlQ&s"
   },
   {
     "id": 4,
-    "category": "ENGINE PARTS",
-    "title": "Premium Oil Filter 8",
-    "price": "2000",
-    "rating": 5,
-    "reviews": 124,
-    "image": "https://images.unsplash.com/photo-1626102033496-c019daaa8559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwZWxlY3RyaWNhbCUyMHBhcnRzfGVufDF8fHx8MTc3MTQ5ODAyNHww&ixlib=rb-4.1.0&q=80&w=10800",
-    "sale": false
+    "title": "Gulf Engine Oil",
+    "category": "Engine Oil",
+    "price": 400,
+    "oldPrice": 600,
+    "sale": false,
+    "rating": 4,
+    "reviews": 22,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuPWelumBvbwDpnIhAG7MPlWOTJRQM7Q7WIw&s"
   },
   {
-    "id": 5,
-    "category": "BRAKE SYSTEM",
-    "title": "Ceramic Brake Pads",
-    "price": "3200",
-    "oldPrice": "4500",
-    "rating": 4,
-    "reviews": 89,
-    "image": "https://images.unsplash.com/photo-1688320944732-8408e3a6218b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwYWlyJTIwZmlsdGVyfGVufDF8fHx8MTc3MTQzMzg5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-    "sale": true
-  }
-  ,
-    {
     "id": 6,
-    "category": "BRAKE SYSTEM",
-    "title": "Ceramic Brake Pads",
-    "price": "3200",
-    "oldPrice": "4500",
-    "rating": 4,
-    "reviews": 89,
-    "image": "https://images.unsplash.com/photo-1421344682218-763a7bcdf34b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RvcmN5Y2xlJTIwb2lsJTIwZmlsdGVyfGVufDF8fHx8MTc3MTQ5ODAyNHww&ixlib=rb-4.1.0&q=80&w=1080",
-    "sale": true
+    "title": "BAJAJ Engine Oil",
+    "category": "Engine Oil",
+    "price": 600,
+    "oldPrice": 700,
+    "sale": false,
+    "rating": 3,
+    "reviews": 5,
+    "image": "https://5.imimg.com/data5/CP/AY/YQ/ANDROID-76531374/images-jpg-500x500.jpg"
   },
-    {
-    "id": 7,
-    "category": "BRAKE SYSTEM",
-    "title": "Ceramic Brake Pads",
-    "price": "3200",
-    "oldPrice": "4500",
-    "rating": 4,
-    "reviews": 89,
-    "image": "https://i.pinimg.com/474x/fc/cc/95/fccc95fbd6298a30030e432bf660d904.jpg",
-    "sale": true
+  {
+    "id": 11,
+    "title": "Pulsur",
+    "category": "Brake Pads",
+    "price": 350,
+    "oldPrice": 400,
+    "sale": true,
+    "rating": 5,
+    "reviews": 55,
+    "image": "https://m.media-amazon.com/images/I/8160U3eNb-L._AC_UF1000,1000_QL80_.jpg"
   },
-    {
-    "id": 8,
-    "category": "BRAKE SYSTEM",
-    "title": "Ceramic Brake Pads",
-    "price": "3200",
-    "oldPrice": "4500",
+  {
+    "id": 12,
+    "title": "Shine BS6 Brake Pad",
+    "category": "Brake Pads",
+    "price": 350,
+    "oldPrice": 500,
+    "sale": false,
+    "rating": 5,
+    "reviews": 32,
+    "image": "https://5.imimg.com/data5/SELLER/Default/2023/8/331179870/QE/FY/TQ/134159255/image00003.jpeg"
+  },
+  {
+    "id": 13,
+    "title": "KTM Brake Pad",
+    "category": "Brake Pads",
+    "price": 500,
+    "oldPrice": 800,
+    "sale": true,
     "rating": 4,
-    "reviews": 89,
-    "image": "https://i.pinimg.com/474x/fc/cc/95/fccc95fbd6298a30030e432bf660d904.jpg",
-    "sale": true
+    "reviews": 21,
+    "image": "https://www.sparify.co/cdn/shop/products/png_20230205_193530_0000.png?v=1747767901&width=1445"
+  },
+ 
+  {
+    "id": 21,
+    "title": "Mask",
+    "category": "Fiber Parts",
+    "price": 500,
+    "oldPrice": 600,
+    "sale": true,
+    "rating": 5,
+    "reviews": 25,
+    "image": "https://www.linkyweb.com/wp-content/uploads/2022/01/honda-cb-shine-dx-head-light-visor-black-oe-original-500x500-1.jpeg"
+  },
+  {
+    "id": 22,
+    "title": "Musguard",
+    "category": "Fiber Parts",
+    "price": 300,
+    "oldPrice": 400,
+    "sale": false,
+    "rating": 4,
+    "reviews": 18,
+    "image": "https://partsonbike.com/wp-content/uploads/front-mudguard-compatible-for-honda-cb-shine-new-model-black-1.jpg"
+  },
+  {
+    "id": 23,
+    "title": "Panals",
+    "category": "Fiber Parts",
+    "price": 400,
+    "oldPrice": 600,
+    "sale": true,
+    "rating": 4,
+    "reviews": 12,
+    "image": "https://partsonbike.com/wp-content/uploads/side-panel-cover-honda-shine-dx-type-2-grey.webp"
+  },
+  {
+    "id": 24,
+    "title": "body parts fiber",
+    "category": "Fiber Parts",
+    "price": 600,
+    "oldPrice": 800,
+    "sale": true,
+    "rating": 5,
+    "reviews": 9,
+    "image": "https://img500.exportersindia.com/product_images/bc-500/2024/1/12836872/suitable-for-bike-honda-shine-alfa-red-tail-panel-1706090648-7263321.jpeg"
+  },
+  {
+    "id": 31,
+    "title": "Activa New Filter",
+    "category": "Air Filters",
+    "price": 450,
+    "oldPrice": 600,
+    "sale": true,
+    "rating": 4,
+    "reviews": 120,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYD1I5PPOtka5ND3TfFqvaTkL23VAd9VLQIg&s"
+  },
+  {
+    "id": 32,
+    "title": "Activa 3g/4g/5g Air Filter",
+    "category": "Air Filters",
+    "price": 400,
+    "oldPrice": 500,
+    "sale": false,
+    "rating": 5,
+    "reviews": 40,
+    "image": "https://rukminim2.flixcart.com/image/480/480/kp2y2kw0/vehicle-air-filter/z/y/d/honda-activa-3g-4g-5g-all-model-carbon-air-filter-premium-original-imag3ea9fhuudfgh.jpeg?q=90"
+  },
+  {
+    "id": 33,
+    "title": "Shine Filter",
+    "category": "Air Filters",
+    "price": 350,
+    "oldPrice": 400,
+    "sale": true,
+    "rating": 5,
+    "reviews": 25,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEhcpNjkUQYsY0vq-y6l9f8YbNVGSJi3PQmA&s"
+  },
+  {
+    "id": 34,
+    "title": "Discover 100T",
+    "category": "Air Filters",
+    "price": 200,
+    "oldPrice": 350,
+    "sale": true,
+    "rating": 3,
+    "reviews": 80,
+    "image": "https://m.media-amazon.com/images/I/31DIV2X3LaL._AC_UF1000,1000_QL80_.jpg"
+  },
+  {
+    "id": 35,
+    "title": "Discover",
+    "category": "Air Filters",
+    "price": 300,
+    "oldPrice": 400,
+    "sale": true,
+    "rating": 5,
+    "reviews": 15,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhVioAl9YZbqpBLlM_XzqvfOrbgPCRV5MZXg&s"
   }
 ]
