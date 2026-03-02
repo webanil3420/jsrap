@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppSelector } from "../app/hooks";
+import { MapPin } from "lucide-react";
 
 const OrderPage = () => {
   const cartItems = useAppSelector((state) => state.Product.cart);
@@ -12,6 +13,30 @@ const OrderPage = () => {
     0
   );
 
+  // ✅ Get Current Location
+  const handleGetLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+        setLocation(googleMapsLink);
+      },
+      () => {
+        alert("Unable to retrieve your location");
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
+  };
+
   const handleWhatsAppOrder = () => {
     if (!address || !location) {
       alert("Please enter address and location");
@@ -22,15 +47,14 @@ const OrderPage = () => {
 
     cartItems.forEach((item, index) => {
       message += `${index + 1}. ${item.title}\n`;
-      message += `Price: ₹${item.price}\n`;
-      message += `Image: ${item.image}\n\n`;
+      message += `Price: ₹${item.price}\n\n`;
     });
 
     message += `Total: ₹${totalPrice}\n\n`;
     message += `📍 Address: ${address}\n`;
     message += `📌 Location: ${location}\n`;
 
-    const phoneNumber = "917489893420"; // 👈 apna number
+    const phoneNumber = "917489893420";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
@@ -62,8 +86,8 @@ const OrderPage = () => {
                 >
                   <img
                     src={item.image}
-                    alt={"no image found"}
-                    className="w-32 h-32 object-cover rounded-lg"
+                    alt="product"
+                    className="w-28 h-28 object-cover rounded-lg"
                   />
 
                   <div className="flex-1">
@@ -79,7 +103,9 @@ const OrderPage = () => {
             </div>
 
             {/* Address Section */}
-            <div className="mt-10 bg-white p-6 rounded-xl shadow space-y-4">
+            <div className="mt-10 bg-white p-6 rounded-xl shadow space-y-5">
+
+              {/* Address */}
               <input
                 type="text"
                 placeholder="Enter Full Address"
@@ -88,24 +114,48 @@ const OrderPage = () => {
                 className="w-full border p-3 rounded-lg"
               />
 
-              <input
-                type="text"
-                placeholder="Paste Google Map Location Link"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
+              {/* Location with Icon */}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Your Location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="w-full border p-3 pr-12 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+
+                <button
+                  type="button"
+                  onClick={handleGetLocation}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-green-600 hover:text-green-800"
+                >
+                  <MapPin size={20} />
+                </button>
+              </div>
 
               <h2 className="text-2xl font-bold">
                 Total: ₹{totalPrice}
               </h2>
 
-              <button
-                onClick={handleWhatsAppOrder}
-                className="w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700"
-              >
-                Order on WhatsApp
-              </button>
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+
+                <button
+                  onClick={handleWhatsAppOrder}
+                  className="flex-1 bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition"
+                >
+                  Order on WhatsApp
+                </button>
+
+                <a
+                  href="tel:7489893420"
+                  className="flex-1 bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition"
+                >
+                  Call Now
+                </a>
+
+              </div>
+
             </div>
           </>
         )}

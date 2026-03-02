@@ -1,21 +1,21 @@
 
-
+import shop from "../assets/810846cd-7187-4c77-a9cc-5e8b6e73e79f shop3.jfif"
 const AboutPage = () => {
   return (
     <div className="bg-white py-16">
       <div className="max-w-6xl mx-auto px-4">
 
-        {/* Page Title */}
+       
         <h1 className="text-4xl font-bold text-center mb-12">
           About JSRAP
         </h1>
 
-        {/* Intro Section */}
+        
         <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
 
           <div>
             <img
-              src="/shop.jpg"
+              src={shop}
               alt="JSRAP Shop"
               className="rounded-2xl shadow-lg w-full h-[400px] object-cover"
             />

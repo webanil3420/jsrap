@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import VisitingCard from "../assets/IMG_20260222_012952.jpg"
+import VisitingCard from "../assets/951601cf-839a-4c4a-8e53-845b54da5b50 shop.jfif"
 
 export default function HeroSection() {
       const [isVisible, setIsVisible] = useState(false);

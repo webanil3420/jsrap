@@ -6,19 +6,19 @@ const brands = [
   },
   {
     name: "Hero",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Hero_MotoCorp_Logo.svg",
+    logo: "https://i.pinimg.com/736x/ef/6f/a5/ef6fa5b0566fa046b89b407ad63a314e.jpg",
   },
   {
     name: "Bajaj",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bajaj_Auto_logo.svg",
+    logo: "https://www.logodee.com/wp-content/uploads/2021/10/8.jpg",
   },
   {
     name: "TVS",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/TVS_Motor_Company_logo.svg",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs7r-GxMoVm9Ml4Y27BIPWW4S5hfuiKj8nnA&s",
   },
   {
     name: "Yamaha",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Yamaha_Logo.svg",
+    logo: "https://www.nicepng.com/png/full/173-1733298_bikes-bike-company-logo-png.png",
   },
 ];
 

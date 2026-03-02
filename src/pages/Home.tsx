@@ -3,7 +3,7 @@
 import Header from '../layouts/Header'
 import { Wrench, ChevronRight } from 'lucide-react';
 
-import Footer from '../layouts/Footer';
+
 import { Products } from './Products';
 import { useRef } from 'react';
 
@@ -143,7 +143,7 @@ export default function Home() {
       <div>
         <BrandsPage />
       </div>
-      <Footer />
+      
     </div>
 
   )
