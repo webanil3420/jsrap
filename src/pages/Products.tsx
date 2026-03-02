@@ -1,13 +1,17 @@
 import productsData from "./ProductSection.json";
 import { ChevronRight, ShoppingCart, Star } from "lucide-react";
 import Card from "../components/ui/Card";
-import { useAppSelector } from "../app/hooks";
+import { useAppSelector ,useAppDispatch } from "../app/hooks";
+import { addToCart } from "../app/features/products/productSlice";
 
 export const Products = () => {
+
+  const dispatch = useAppDispatch();
+const cartItems = useAppSelector((state) => state.Product.cart);
   const selectedCategory = useAppSelector(
-    
+
     (state) => state.Product.selectedCategory
-    
+
   );
 
   const filteredProducts =
@@ -59,9 +63,18 @@ export const Products = () => {
 
                 {/* Desktop Hover Button */}
                 <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
-                  <button className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-red-700 active:scale-95">
-                    <ShoppingCart size={18} /> Add to Cart
-                  </button>
+                <button
+  disabled={cartItems.some(p => p.id === item.id)}
+  onClick={() =>
+    dispatch(addToCart({ ...item, name: item.title, quantity: 1 }))
+  }
+  className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg hover:bg-red-700 active:scale-95 disabled:bg-gray-400"
+>
+  <ShoppingCart size={18} />
+  {cartItems.some(p => p.id === item.id)
+    ? "Added"
+    : "Add to Cart"}
+</button>
                 </div>
               </div>
 

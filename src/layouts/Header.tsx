@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { useAppSelector } from "../app/hooks";
+import { useNavigate } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -16,16 +17,17 @@ type HeaderProps = {
 
 
 const Header: React.FC<HeaderProps> = ({ productRef }) => {
+  const navigate = useNavigate();
+  const cartItems = useAppSelector((state) => state.Product.cart);
+  const handleNavClick = (action: string) => {
+    if (action === 'products') {
+      productRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
 
-const handleNavClick = (action: string) => {
-  if (action === 'products') {
-    productRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  if (action === 'home') {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-};
+    if (action === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -99,7 +101,9 @@ const handleNavClick = (action: string) => {
             <IconButton icon={<User size={20} />} className="hidden sm:flex" />
             <IconButton
               icon={<ShoppingCart size={20} />}
-              badge={3}
+              badge={cartItems.length}
+              onClick={() => navigate("/orderPage")}
+
             />
             <IconButton icon={<Settings size={20} />} className="hidden sm:flex" />
           </div>
@@ -182,10 +186,11 @@ interface IconButtonProps {
   icon: React.ReactNode;
   badge?: number;
   className?: string;
+  onClick?: () => void;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ icon, badge, className = "" }) => (
-  <button className={`relative p-2 md:p-2.5 border border-gray-200 rounded-md text-gray-600 hover:border-[#ff4d00] hover:bg-orange-50 transition ${className}`}>
+const IconButton: React.FC<IconButtonProps> = ({ icon, badge, className = "", onClick }) => (
+  <button onClick={onClick} className={`relative p-2 md:p-2.5 border border-gray-200 rounded-md text-gray-600 hover:border-[#ff4d00] hover:bg-orange-50 transition ${className}`}>
     {icon}
     {badge !== undefined && (
       <span className="absolute -top-2 -right-2 bg-[#ff4d00] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
