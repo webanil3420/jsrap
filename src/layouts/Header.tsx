@@ -137,46 +137,38 @@ const Header: React.FC<HeaderProps> = ({ productRef }) => {
 
       {/* 4. MOBILE DRAWER MENU */}
       {/* 4. MOBILE DRAWER MENU - With Blur Effect */}
-      <div className={`
-  fixed inset-0 z-50 transition-all duration-300 lg:hidden
-  ${isMenuOpen
-          ? "opacity-100 pointer-events-auto backdrop-blur-md bg-black/10"
-          : "opacity-0 pointer-events-none backdrop-blur-none bg-transparent"}
-`} onClick={() => setIsMenuOpen(false)}>
-
+     {isMenuOpen && (
         <div
-          className={`
-      fixed top-0 left-0 w-[280px] h-full bg-white shadow-2xl transition-transform duration-300 ease-in-out transform
-      ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
-    `}
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setIsMenuOpen(false)}
         >
-          {/* ... rest of the menu content remains same ... */}
-          <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-            <span className="font-bold text-[#ff4d00] text-xl">MENU</span>
-            <button onClick={() => setIsMenuOpen(false)} className="p-1 hover:bg-gray-100 rounded-full">
-              <X size={24} />
-            </button>
-          </div>
+          <div
+            className="fixed top-0 left-0 w-[280px] h-full bg-white shadow-2xl p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <span className="font-bold text-[#ff4d00] text-xl">
+                MENU
+              </span>
+              <button onClick={() => setIsMenuOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
 
-          <ul className="flex flex-col p-4">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  onClick={() => {
-                    handleNavClick(link.action);
-                    setIsMenuOpen(false);
-                  }}
-                  className="block py-4 px-4 text-gray-700 font-semibold border-b border-gray-50 hover:bg-orange-50 hover:text-[#ff4d00] rounded-lg transition-colors"
-
+            <ul className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <li
+                  key={link.name}
+                  onClick={() => handleNavClick(link.action)}
+                  className="cursor-pointer font-semibold text-gray-700 hover:text-[#ff4d00]"
                 >
                   {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

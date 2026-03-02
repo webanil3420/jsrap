@@ -123,9 +123,18 @@ const cartItems = useAppSelector((state) => state.Product.cart);
 
                 {/* Mobile Button */}
                 <div className="mt-5 md:hidden">
-                  <button className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-sm shadow-md active:bg-red-700">
-                    <ShoppingCart size={16} /> Add to Cart
-                  </button>
+                   <button
+    disabled={cartItems.some(p => p.id === item.id)}
+    onClick={() =>
+      dispatch(addToCart({ ...item, name: item.title, quantity: 1 }))
+    }
+    className="w-full bg-red-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-sm shadow-md active:bg-red-700 disabled:bg-gray-400"
+  >
+    <ShoppingCart size={16} />
+    {cartItems.some(p => p.id === item.id)
+      ? "Added"
+      : "Add to Cart"}
+  </button>
                 </div>
               </Card.Body>
             </Card>
