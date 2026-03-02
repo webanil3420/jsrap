@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Header from "../layouts/Header";
+import { useState } from "react";
+
 import ShopMap from "./ShopMap";
 import { MapPin } from "lucide-react";
 
@@ -26,11 +26,11 @@ const handleGetLocation = () => {
         location: googleMapsLink,
       }));
     },
-    (error) => {
+    (_error) => {
       alert("Unable to retrieve your location");
     },
     {
-      enableHighAccuracy: true, // 👈 important
+      enableHighAccuracy: true, 
       timeout: 10000,
       maximumAge: 0,
     }

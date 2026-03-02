@@ -1,7 +1,6 @@
 
-import { useState, useEffect } from 'react';
+
 import Header from '../layouts/Header'
-import Card from '../components/ui/Card';
 import { Wrench, ChevronRight } from 'lucide-react';
 
 import Footer from '../layouts/Footer';
