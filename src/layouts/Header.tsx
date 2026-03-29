@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from "../app/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -21,6 +21,54 @@ const Header: React.FC<HeaderProps> = ({ productRef }) => {
   const location = useLocation(); 
   const cartItems = useAppSelector((state) => state.Product.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [showAddedToast, setShowAddedToast] = useState(false);
+  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
+  const toastTimerRef = useRef<number | null>(null);
+  const prevCartLenRef = useRef<number>(cartItems.length);
+
+  const lastAddedItem =
+    lastAddedId == null ? null : cartItems.find((x) => x.id === lastAddedId) ?? null;
+
+  useEffect(() => {
+    const prevLen = prevCartLenRef.current;
+    const nextLen = cartItems.length;
+
+    // Show toast only when an item is newly added
+    if (nextLen > prevLen) {
+      const newest = cartItems[nextLen - 1];
+      if (newest?.id != null) setLastAddedId(newest.id);
+      setShowAddedToast(true);
+
+      if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+      toastTimerRef.current = window.setTimeout(() => {
+        setShowAddedToast(false);
+      }, 3500);
+    }
+
+    prevCartLenRef.current = nextLen;
+  }, [cartItems]);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    };
+  }, []);
+
+  const runSearch = (raw: string) => {
+    const q = raw.trim();
+    if (!q) return;
+
+    // Always search on home (products live there)
+    if (location.pathname !== "/") {
+      navigate(`/?q=${encodeURIComponent(q)}`);
+      return;
+    }
+
+    // Already on home: update URL and scroll to products
+    navigate(`/?q=${encodeURIComponent(q)}`, { replace: false });
+    productRef?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handleNavClick = (action: string) => {
     setIsMenuOpen(false); 
@@ -108,8 +156,17 @@ const Header: React.FC<HeaderProps> = ({ productRef }) => {
                 type="text"
                 placeholder="Search for parts, brands, or models..."
                 className="w-full py-2.5 px-4 outline-none text-gray-600 text-sm"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") runSearch(searchText);
+                }}
               />
-              <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff6a00] p-2.5 px-5 text-white hover:opacity-90 transition">
+              <button
+                type="button"
+                onClick={() => runSearch(searchText)}
+                className="bg-gradient-to-r from-[#ff4d00] to-[#ff6a00] p-2.5 px-5 text-white hover:opacity-90 transition"
+              >
                 <Search size={20} />
               </button>
             </div>
@@ -134,8 +191,17 @@ const Header: React.FC<HeaderProps> = ({ productRef }) => {
               type="text"
               placeholder="Search parts..."
               className="w-full py-2 px-4 outline-none text-gray-600 text-sm"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") runSearch(searchText);
+              }}
             />
-            <button className="bg-[#ff4d00] p-2 px-4 text-white">
+            <button
+              type="button"
+              onClick={() => runSearch(searchText)}
+              className="bg-[#ff4d00] p-2 px-4 text-white"
+            >
               <Search size={18} />
             </button>
           </div>
@@ -195,6 +261,78 @@ const Header: React.FC<HeaderProps> = ({ productRef }) => {
                 <button className="w-full py-3 bg-gray-900 text-white rounded-lg font-bold text-sm">
                     Login / Register
                 </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Added-to-cart toast (bottom corner) */}
+      {showAddedToast && (
+        <div className="fixed bottom-5 right-5 z-[60] w-[320px] max-w-[calc(100vw-2.5rem)]">
+          <div
+            className="rounded-2xl border border-orange-100 bg-white shadow-2xl overflow-hidden"
+            onMouseEnter={() => {
+              if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+            }}
+            onMouseLeave={() => {
+              if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+              toastTimerRef.current = window.setTimeout(() => setShowAddedToast(false), 2500);
+            }}
+          >
+            <div className="p-4 flex gap-3">
+              <div className="h-12 w-12 rounded-xl bg-orange-50 border border-orange-100 overflow-hidden flex items-center justify-center flex-shrink-0">
+                {lastAddedItem?.image ? (
+                  <img
+                    src={lastAddedItem.image}
+                    alt="added"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <ShoppingCart size={18} className="text-orange-500" />
+                )}
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="text-sm font-extrabold text-slate-900">Added to cart</p>
+                    <p className="text-xs text-slate-500 truncate">
+                      {lastAddedItem?.title ?? "Item added"}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddedToast(false)}
+                    className="p-1 rounded-full hover:bg-slate-100 text-slate-500"
+                    aria-label="Close"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+
+                <div className="mt-3 flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowAddedToast(false);
+                      navigate("/orderPage");
+                    }}
+                    className="flex-1 py-2 rounded-xl bg-gradient-to-r from-[#ff4d00] to-[#ff6a00] text-white text-sm font-extrabold hover:opacity-95 active:scale-[0.99] transition"
+                  >
+                    Go to Cart
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddedToast(false)}
+                    className="px-3 py-2 rounded-xl border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50 transition"
+                  >
+                    Continue
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="h-1 bg-orange-100">
+              <div className="h-full w-full bg-orange-500/60" />
             </div>
           </div>
         </div>

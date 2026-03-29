@@ -5,7 +5,8 @@ import { Wrench, ChevronRight } from 'lucide-react';
 
 
 import { Products } from './Products';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useSearchParams } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setCategory } from "../app/features/products/productSlice";
@@ -19,11 +20,23 @@ export default function Home() {
 
   const dispatch = useAppDispatch();
   const productRef = useRef<HTMLDivElement | null>(null);
+  const [searchParams] = useSearchParams();
+  const q = (searchParams.get("q") ?? "").trim();
 
 
   const selectedCategory = useAppSelector(
     (state) => state.Product.selectedCategory
   );
+
+  useEffect(() => {
+    if (!q) return;
+    // Ensure search isn't accidentally hidden by a non-All category
+    dispatch(setCategory("All"));
+    // Scroll after mount so products are visible
+    setTimeout(() => {
+      productRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  }, [q, dispatch]);
 
   const handleCategoryClick = (category: string) => {
     console.log("Clicked:", category);

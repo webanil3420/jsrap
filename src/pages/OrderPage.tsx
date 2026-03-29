@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useAppSelector } from "../app/hooks";
-import { MapPin } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { MapPin, Trash2 } from "lucide-react";
+import { removeFromCart } from "../app/features/products/productSlice";
 
 const OrderPage = () => {
+  const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.Product.cart);
 
+  const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [location, setLocation] = useState("");
 
@@ -38,12 +41,18 @@ const OrderPage = () => {
   };
 
   const handleWhatsAppOrder = () => {
-    if (!address || !location) {
-      alert("Please enter address and location");
+    if (!name || !address || !location) {
+      alert("Please enter name, address and location");
       return;
     }
 
-    let message = "🛒 *New Order Details* \n\n";
+    // Use unicode escape sequences so emojis don't get corrupted by file encoding on Windows
+    const EMOJI_CART = "\u{1F6D2}";
+    const EMOJI_PERSON = "\u{1F64D}";
+    const EMOJI_PIN = "\u{1F4CD}";
+    const EMOJI_ROUND_PIN = "\u{1F4CC}";
+
+    let message = `${EMOJI_CART} *New Order Details*\n\n`;
 
     cartItems.forEach((item, index) => {
       message += `${index + 1}. ${item.title}\n`;
@@ -51,8 +60,9 @@ const OrderPage = () => {
     });
 
     message += `Total: ₹${totalPrice}\n\n`;
-    message += `📍 Address: ${address}\n`;
-    message += `📌 Location: ${location}\n`;
+    message += `${EMOJI_PERSON} Name: ${name}\n`;
+    message += `${EMOJI_PIN} Address: ${address}\n`;
+    message += `${EMOJI_ROUND_PIN} Location: ${location}\n`;
 
     const phoneNumber = "917489893420";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
@@ -98,6 +108,16 @@ const OrderPage = () => {
                       ₹{item.price}
                     </p>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    className="p-3 rounded-xl border border-red-100 text-red-600 hover:bg-red-50 hover:border-red-200 transition"
+                    aria-label="Remove item"
+                    title="Remove"
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </div>
               ))}
             </div>
@@ -105,32 +125,54 @@ const OrderPage = () => {
             {/* Address Section */}
             <div className="mt-10 bg-white p-6 rounded-xl shadow space-y-5">
 
-              {/* Address */}
-              <input
-                type="text"
-                placeholder="Enter Full Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
-
-              {/* Location with Icon */}
-              <div className="relative">
+              {/* Name */}
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-slate-700">Name</label>
                 <input
                   type="text"
-                  placeholder="Your Location"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
+
+              {/* Address */}
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-slate-700">Address</label>
+                <textarea
+                  placeholder="Enter your full address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="w-full border p-3 rounded-lg min-h-[90px] resize-none focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
+
+              {/* Location with Icon */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-3">
+                  <label className="text-sm font-bold text-slate-700">Location</label>
+                  <button
+                    type="button"
+                    onClick={handleGetLocation}
+                    className="inline-flex items-center gap-2 text-sm font-extrabold text-green-700 hover:text-green-800"
+                  >
+                    <MapPin size={18} />
+                    Use current location
+                  </button>
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Click “Use current location” to set automatically"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full border p-3 pr-12 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
 
-                <button
-                  type="button"
-                  onClick={handleGetLocation}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-green-600 hover:text-green-800"
-                >
-                  <MapPin size={20} />
-                </button>
+                <p className="text-xs text-slate-500">
+                  Tip: “Use current location” pe click karoge to location automatically set ho jayegi.
+                </p>
               </div>
 
               <h2 className="text-2xl font-bold">
